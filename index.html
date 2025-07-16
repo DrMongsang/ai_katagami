@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Style Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Screen: Start -->
+        <div id="screen-start" class="screen active">
+            <h1>AI Style Analyzer</h1>
+            <p>AIがあなたの体型と好みを分析し、<br>最適なファッションスタイルとサイズを診断します。</p>
+            <button id="start-btn">診断スタート</button>
+        </div>
+
+        <!-- Screen: Mode Select -->
+        <div id="screen-mode-select" class="screen">
+            <h2>STEP 1: 診断モードを選択</h2>
+            <p>どちらの方法で診断しますか？</p>
+            <div class="mode-buttons">
+                <button id="mode-easy-btn">かんたん診断<br><small>（身長・体重から予測）</small></button>
+                <button id="mode-pro-btn">プロ診断<br><small>（ヌード寸法を手入力）</small></button>
+            </div>
+        </div>
+
+        <!-- Screen: Step 1 (Easy) -->
+        <div id="screen-step1-easy" class="screen">
+            <h2>STEP 1-E: 基本情報を入力</h2>
+            <div class="input-group">
+                <label for="height">身長 (cm)</label>
+                <input type="number" id="height" placeholder="例: 175">
+            </div>
+            <div class="input-group">
+                <label for="weight">体重 (kg)</label>
+                <input type="number" id="weight" placeholder="例: 65">
+            </div>
+            <button class="next-btn">次へ</button>
+        </div>
+
+        <!-- Screen: Step 1 (Pro) -->
+        <div id="screen-step1-pro" class="screen">
+            <h2>STEP 1-P: ヌード寸法を入力</h2>
+            <div class="nude-input-grid">
+                <!-- JS will generate 11 input fields here -->
+            </div>
+            <button class="next-btn">次へ</button>
+        </div>
+
+        <!-- Screen: Step 2 -->
+        <div id="screen-step2" class="screen">
+            <h2>STEP 2: 好みのスタイルを選択</h2>
+            <div class="input-group">
+                <label>好みのフィット感は？</label>
+                <select id="fit-preference">
+                    <option value="タイト">タイト (-2%)</option>
+                    <option value="ジャスト" selected>ジャスト (±0%)</option>
+                    <option value="ルーズ">ルーズ (+3%)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>よくするファッションは？</label>
+                <select id="style-preference">
+                    <option value="きれいめ">きれいめ</option>
+                    <option value="カジュアル" selected>カジュアル</option>
+                    <option value="ストリート">ストリート</option>
+                </select>
+            </div>
+            <button id="analyze-btn">結果を見る</button>
+        </div>
+        
+        <!-- Screen: Loading -->
+        <div id="screen-loading" class="screen">
+            <h2>AIがあなたのスタイルを分析中...</h2>
+            <div class="loader"></div>
+        </div>
+
+        <!-- Screen: Result -->
+        <div id="screen-result" class="screen">
+            <h2>診断結果</h2>
+            <h3 id="style-type-result">あなたは【ジャスト・カジュアル】タイプ！</h3>
+
+            <div class="result-part">
+                <h4>1. あなたのヌード寸法 (<span id="nude-source"></span>)</h4>
+                <div class="result-tables">
+                    <div class="result-table full-width">
+                        <table id="nude-results-table"><tbody></tbody></table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-part">
+                <h4>2. AI推薦サイズ (標準)</h4>
+                <div class="result-tables">
+                    <div class="result-table">
+                        <h5>ジャケット</h5>
+                        <table id="jacket-reco-table"><tbody></tbody></table>
+                    </div>
+                    <div class="result-table">
+                        <h5>パンツ</h5>
+                        <table id="pants-reco-table"><tbody></tbody></table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-part">
+                <h4>3. お好みを反映した完成サイズ</h4>
+                <div class="result-tables">
+                    <div class="result-table">
+                        <h5>ジャケット</h5>
+                        <table id="jacket-final-table"><tbody></tbody></table>
+                    </div>
+                    <div class="result-table">
+                        <h5>パンツ</h5>
+                        <table id="pants-final-table"><tbody></tbody></table>
+                    </div>
+                </div>
+            </div>
+
+            <button id="restart-btn">もう一度診断する</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
